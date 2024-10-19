@@ -1,0 +1,63 @@
+# 빌드 아티팩트
+/build/
+/out/
+/target/
+
+# IDE 설정 파일 (STS, IntelliJ, VS Code 등)
+### STS (Spring Tool Suite) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+# Gradle 관련 파일
+.gradle/
+/gradle/wrapper/gradle-wrapper.jar
+
+# NetBeans 관련 파일들
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# 바이너리 및 테스트 아티팩트
+/bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# MacOS 관련 파일
+.DS_Store
+
+# 로그 파일 및 기타 환경 파일들
+*.log
+logs/
+*.env
+*.properties
+*.yml
+*.yaml
+
+# Maven Wrapper
+/.mvn/wrapper/maven-wrapper.jar
+.mvn/
+
+# 자바 컴파일 파일
+*.class
+
+# 테스트 결과
+/test-results/
+
+# 빌드 및 배포에 사용되지 않는 파일들
+HELP.md
