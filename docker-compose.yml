@@ -1,0 +1,62 @@
+version: '3.7'
+
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"  # AMQP 포트
+      - "15672:15672"  # RabbitMQ Management Plugin UI
+      - "15692:15692"  # RabbitMQ Prometheus Exporter
+      - "1883:1883"    # MQTT 포트
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf  # 설정 파일 마운트
+    command: >
+      sh -c "
+      rabbitmq-plugins enable --offline rabbitmq_management;
+      rabbitmq-plugins enable --offline rabbitmq_prometheus;
+      rabbitmq-plugins enable --offline rabbitmq_mqtt;
+      rabbitmq-server"
+
+  rabbitmq-exporter:
+    image: kbudde/rabbitmq-exporter
+    container_name: rabbitmq_exporter
+    depends_on:
+      - rabbitmq
+    ports:
+      - "9419:9419"
+    environment:
+      RABBIT_URL: http://guest:guest@rabbitmq:15672
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    depends_on:
+      - prometheus
+
+volumes:
+  rabbitmq_data:
+    driver: local
+  grafana_data:
+    driver: local
