@@ -9,15 +9,16 @@ SFMS 프로젝트는 PLC 개발자로 일하면서 느꼈던 불편함을 개발
 
 <br><br>
 
-## 아키텍처(예상)
-![image](https://github.com/user-attachments/assets/5c4ef03a-6241-43e8-938a-f9626b9f1f85)
+## 아키텍처
+![image](https://github.com/user-attachments/assets/9a16b1d4-f957-4a48-9004-4d14c991205e)
+
 
 <br><br>
 
-## 사용 기술(예상)
+## 사용 기술
 
 - **언어 및 프레임워크**: `Java`, `Spring`
 - **클라우드 및 가상화**: `AWS EC2`
 - **메시지 브로커 및 데이터 수집**: `RabbitMQ`
 - **모니터링 도구**: `Prometheus`, `Grafana`
-- 배포 : `Docker`, `github actions`
+- 배포 : `Docker Compose`, `github actions`
