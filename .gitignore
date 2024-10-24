@@ -46,7 +46,7 @@
 logs/
 *.env
 *.properties
-*.yml
+application.yml
 *.yaml
 
 # Maven Wrapper
